@@ -9,6 +9,10 @@ abstract contract Pausable {
         _owner = msg.sender;
     }
 
+
+    // ========================== Modifiers ==========================
+
+
     modifier onlyOwner {
         require(msg.sender == _owner, "Caller is not the owner");
         _;
@@ -18,6 +22,16 @@ abstract contract Pausable {
         require(!_paused, "Contract is already paused");
         _;
     }
+
+
+    // ========================== Public Getter Functions ==========================
+
+
+    function paused() public view virtual returns (bool) {
+        return _paused;
+    }
+
+    // ========================== Public Setter Functions ==========================
 
     
     function pause() public onlyOwner whenNotPaused {
