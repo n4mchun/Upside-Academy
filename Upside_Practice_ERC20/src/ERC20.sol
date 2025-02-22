@@ -201,13 +201,3 @@ contract ERC20 is IERC20, Pausable, Permit {
         _approve(owner, spender, value);
     }
 }
-
-// permit이 생겨난 이유. EIP 2612
-// approve의 경우 EOA가 직접 호출해야 하고, gas fee로 인해 ETH를 보유하고 있어야 한다.
-// 
-// replay attack
-
-// mint, burn은 없으므로 _update 말고 그냥 _transfer로 사용하기
-// -> EIP-5679, 왜 생겨났는지 조사
-
-// 값을 설정할 때 빼고 조회할 때는 무조건 함수로 받아옴. 같은 컨트랙트 변수여도
